@@ -1,0 +1,107 @@
+.feedback-result {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+    font-family: 'Arial', sans-serif;
+}
+
+.feedback-container {
+width: 80%;
+max-width: 800px;
+background: #fff;
+border: 1px solid #ddd;
+border-radius: 10px;
+padding: 20px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.overall-score {
+text-align: center;
+margin-bottom: 20px;
+}
+
+.score-chart {
+position: relative;
+width: 120px;
+height: 120px;
+margin: 0 auto;
+border-radius: 50%;
+background: #4a90e2;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.circle {
+width: 100px;
+height: 100px;
+background: #fff;
+border-radius: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.percentage {
+font-size: 24px;
+font-weight: bold;
+color: #000;
+}
+
+.emotion-status {
+background: #eaf7ff;
+padding: 15px;
+border-radius: 8px;
+margin-bottom: 20px;
+}
+
+.status-header h3 {
+color: #4a90e2;
+margin: 0;
+font-size: 20px;
+text-align: center;
+}
+
+.status-details {
+display: flex;
+justify-content: space-around;
+margin-top: 10px;
+}
+
+.detailed-analysis table {
+width: 100%;
+border-collapse: collapse;
+margin-top: 20px;
+}
+
+.detailed-analysis th, .detailed-analysis td {
+border: 1px solid #ddd;
+text-align: center;
+padding: 8px;
+}
+
+.detailed-analysis th {
+background: #f4f4f4;
+font-weight: bold;
+}
+
+.ai-question {
+background: #f4f4f4;
+padding: 10px 15px;
+border-radius: 8px;
+margin-top: 20px;
+}
+
+.ai-question h4 {
+color: #4a90e2;
+margin-bottom: 10px;
+margin-top: 10px;
+}
+
+.ai-question p {
+margin: 0;
+font-size: 14px;
+line-height: 2;
+}
