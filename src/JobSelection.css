@@ -10,32 +10,55 @@
 }
 
 .job-selection h1 {
-font-size: 28px;
-margin-bottom: 5px;
-color: #8d8b8b;
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #8d8b8b;
+}
+
+.job-selection h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #4a90e2;
 }
 
 .job-selection ul {
-list-style: none;
-padding: 0;
-width: 100%;
-max-width: 400px;
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    max-width: 400px;
 }
 
 .job-selection li {
-margin: 10px 0;
-padding: 15px 30px;
-cursor: pointer;
-background-color: #4498ec;
-color: #fff;
-border-radius: 8px;
-font-size: 18px;
-text-align: center;
-transition: all 0.3s ease;
+    margin: 10px 0;
+    padding: 15px 30px;
+    cursor: pointer;
+    background-color: #4498ec;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 18px;
+    text-align: center;
+    transition: all 0.3s ease;
 }
 
 .job-selection li:hover {
-background-color: #357ABD;
-transform: translateY(-3px);
-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #357abd;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.back-button {
+    margin: 0;
+    display: inline-block;
+    padding: 8px 15px;
+    font-size: 13px;
+    background-color: #ddd;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #bbb;
 }
