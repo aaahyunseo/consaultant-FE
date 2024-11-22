@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Navbar from "./Navbar";
-import JobSelection from "./JobSelection";
-import QuestionUpload from "./QuestionUpload";
-import FeedbackResult from "./FeedbackResult";
-import LoadingSpinner from "./LoadingSpinner";
+import Navbar from "./component/Navbar";
+import JobSelection from "./pages/JobSelection";
+import QuestionUpload from "./pages/QuestionUpload";
+import FeedbackResult from "./pages/FeedbackResult";
+import LoadingSpinner from "./component/LoadingSpinner";
 
 function App() {
   const [page, setPage] = useState("jobSelection");
@@ -58,12 +58,6 @@ function App() {
     }
   };
 
-  const handleNavigateHome = () => {
-    setPage("jobSelection");
-    setSelectedJob(null);
-    setFeedback(null);
-  };
-
   const handleRestart = () => {
     setPage("jobSelection");
     setSelectedJob(null);
@@ -81,7 +75,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar onNavigateHome={handleNavigateHome} />
+      <Navbar/>
       {loading && <LoadingSpinner />}
       {!loading && page === "jobSelection" && (
         <JobSelection onJobSelect={handleJobSelect} />
