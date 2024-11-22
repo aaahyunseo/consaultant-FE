@@ -58,12 +58,6 @@ function App() {
     }
   };
 
-  const handleRestart = () => {
-    setPage("jobSelection");
-    setSelectedJob(null);
-    setFeedback(null);
-  };
-
   const handleNavigateTailQuestion = () => {
     setPage("tailQuestion");
   };
