@@ -9,6 +9,7 @@ function App() {
   const [page, setPage] = useState("jobSelection");
   const [selectedJob, setSelectedJob] = useState(null);
   const [feedback, setFeedback] = useState(null);
+  const [tailQuestionData, setTailQuestionData] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const handleJobSelect = (job) => {
@@ -16,7 +17,6 @@ function App() {
     setPage("questionUpload");
   };
 
-  // 임의의 더미 데이터
   const dummyFeedback = {
     overallScore: 75,
     emotion: "😳 다소 불안",
@@ -25,7 +25,7 @@ function App() {
     pronunciation: "정확",
     similarity: "높음",
     meaningless: "주의",
-    breakTime: "28.25초",
+    breakTime: "주의",
     analysis: { expression: 1.46, structure: 1.09, content: 1.62 },
     question: "프로젝트에서 마주했던 가장 어려운 문제는 무엇이었으며, 어떻게 해결했나요?",
     userAnswer: `저는 이 회사가 꿈꾸던 곳이라서 지원했습니다. 
@@ -38,38 +38,41 @@ function App() {
       "발음이 대체적으로 정확합니다.",
       "총 녹음 시간인 15.088초 동안, 답변 중 약간의 휴지 구간이 있었습니다. 연습을 통해 개선할 수 있습니다.",
       "간투어가 없습니다. 매우 유창하게 답변하였습니다.",
-      "유사도가 높습니다. 질문과 답변이 의미적으로 유사합니다. (0.8716393113136292)"
-    ]
+      "유사도가 높습니다. 질문과 답변이 의미적으로 유사합니다. (0.8716393113136292)",
+    ],
+    generated_question: "이 문제를 해결하면서 느꼈던 가장 큰 배움은 무엇인가요?",
   };
 
-  // 임의의 더미 데이터로 설정
   const handleFileUpload = async (file) => {
-    setLoading(true); // 로딩 시작
+    setLoading(true);
     try {
-      // 실제 서버 호출 없이 더미 데이터 설정하기
       setTimeout(() => {
         setFeedback(dummyFeedback);
         setPage("feedbackResult");
         setLoading(false);
-      }, 3000); // 3초 후에 피드백 페이지로 넘어가기
+      }, 3000);
     } catch (error) {
       console.error("Error uploading file:", error);
       alert("파일 업로드 중 오류가 발생했습니다.");
     }
   };
 
-  const handleNavigateTailQuestion = () => {
+  const handleTailQuestion = () => {
+    setTailQuestionData(feedback.generated_question);
     setPage("tailQuestion");
   };
 
-  const handleNavigateDetailedEvaluation = () => {
-    alert("상세 평가 기준 페이지로 이동합니다");
-    // 상세 평가 페이지 추가하기
+  const handleEndQuestions = () => {
+    alert("모든 질문을 종료합니다. 감사합니다!");
+    setPage("jobSelection");
+    setSelectedJob(null);
+    setFeedback(null);
+    setTailQuestionData(null);
   };
 
   return (
     <div className="App">
-      <Navbar/>
+      <Navbar />
       {loading && <LoadingSpinner />}
       {!loading && page === "jobSelection" && (
         <JobSelection onJobSelect={handleJobSelect} />
@@ -77,21 +80,27 @@ function App() {
       {!loading && page === "questionUpload" && (
         <QuestionUpload
           selectedJob={selectedJob}
+          questionContent={`${selectedJob} 관련된 질문 예시입니다.`}
           onFileUpload={handleFileUpload}
         />
       )}
       {!loading && page === "feedbackResult" && feedback && (
         <FeedbackResult
-          feedback={feedback}
-          onTailQuestion={handleNavigateTailQuestion}
-          onDetailedEvaluation={handleNavigateDetailedEvaluation}
-        />
+        feedback={feedback}
+        onTailQuestion={handleTailQuestion}
+        onEndQuestions={handleEndQuestions}
+        >
+        <button onClick={handleEndQuestions}>질문 종료</button>
+        </FeedbackResult>
       )}
-      {!loading && page === "tailQuestion" && (
+      {!loading && page === "tailQuestion" && tailQuestionData && (
         <QuestionUpload
           selectedJob={selectedJob}
+          questionType="꼬리질문"
+          questionContent={tailQuestionData}
           onFileUpload={handleFileUpload}
-        />
+        >
+        </QuestionUpload>
       )}
     </div>
   );
