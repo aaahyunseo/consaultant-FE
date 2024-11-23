@@ -1,17 +1,11 @@
 import React from "react";
 import "./FeedbackResult.css";
 
-function FeedbackResult({ feedback, onTailQuestion, onDetailedEvaluation }) {
+function FeedbackResult({ feedback, onTailQuestion, onDetailedEvaluation, onEndQuestions }) {
   
   const getStatusColor = (value, type) => {
     if (value === "주의") return "#FF9800"; // 주의 - 주황색
     if (value === "위험") return "#F44336"; // 위험 - 빨강색
-    if (type === "breakTime") {
-      const breakTimeValue = parseFloat(value);
-      if (breakTimeValue >= 20) return "#F44336"; // 위험 - 빨강색
-      if (breakTimeValue >= 10) return "#FF9800"; // 주의 - 주황색
-      return "#000000";
-    }
     return "#000000";
   };
 
@@ -110,6 +104,9 @@ function FeedbackResult({ feedback, onTailQuestion, onDetailedEvaluation }) {
           </button>
           <button className="tail-question-button" onClick={onTailQuestion}>
             꼬리질문으로 이동
+          </button>
+          <button className="end-questions-button" onClick={onEndQuestions}>
+            질문 종료
           </button>
         </div>
       </div>
