@@ -62,6 +62,11 @@ function App() {
     setPage("tailQuestion");
   };
 
+  const handleNavigateDetailedEvaluation = () => {
+    alert("상세 평가 기준 페이지로 이동합니다");
+    // 상세 평가 페이지 추가하기
+  };
+
   const handleEndQuestions = () => {
     alert("모든 질문을 종료합니다. 감사합니다!");
     setPage("jobSelection");
@@ -87,6 +92,7 @@ function App() {
       {!loading && page === "feedbackResult" && feedback && (
         <FeedbackResult
         feedback={feedback}
+        onDetailedEvaluation={handleNavigateDetailedEvaluation}
         onTailQuestion={handleTailQuestion}
         onEndQuestions={handleEndQuestions}
         >
