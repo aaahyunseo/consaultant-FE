@@ -168,3 +168,19 @@
 .tail-question-button {
     background-color: #4a90e2;
 }
+
+.end-questions-button {
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #e94e77;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.end-questions-button:hover {
+    background-color: #b83250;
+    transform: translateY(-2px);
+}
