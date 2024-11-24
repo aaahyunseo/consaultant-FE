@@ -4,6 +4,7 @@ import JobSelection from "./pages/JobSelection";
 import QuestionUpload from "./pages/QuestionUpload";
 import FeedbackResult from "./pages/FeedbackResult";
 import LoadingSpinner from "./component/LoadingSpinner";
+import DetailedEvaluationModal from "./pages/DetailedEvaluationModal";
 
 function App() {
   const [page, setPage] = useState("jobSelection");
@@ -11,6 +12,7 @@ function App() {
   const [feedback, setFeedback] = useState(null);
   const [tailQuestionData, setTailQuestionData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleJobSelect = (job) => {
     setSelectedJob(job);
@@ -63,8 +65,11 @@ function App() {
   };
 
   const handleNavigateDetailedEvaluation = () => {
-    alert("상세 평가 기준 페이지로 이동합니다");
-    // 상세 평가 페이지 추가하기
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   const handleEndQuestions = () => {
@@ -77,7 +82,9 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
+      {isModalOpen && <DetailedEvaluationModal onClose={closeModal} />}
+      {!isModalOpen && <Navbar />}
+      
       {loading && <LoadingSpinner />}
       {!loading && page === "jobSelection" && (
         <JobSelection onJobSelect={handleJobSelect} />
@@ -91,12 +98,12 @@ function App() {
       )}
       {!loading && page === "feedbackResult" && feedback && (
         <FeedbackResult
-        feedback={feedback}
-        onDetailedEvaluation={handleNavigateDetailedEvaluation}
-        onTailQuestion={handleTailQuestion}
-        onEndQuestions={handleEndQuestions}
+          feedback={feedback}
+          onDetailedEvaluation={handleNavigateDetailedEvaluation}
+          onTailQuestion={handleTailQuestion}
+          onEndQuestions={handleEndQuestions}
         >
-        <button onClick={handleEndQuestions}>질문 종료</button>
+          <button onClick={handleEndQuestions}>질문 종료</button>
         </FeedbackResult>
       )}
       {!loading && page === "tailQuestion" && tailQuestionData && (
@@ -105,8 +112,7 @@ function App() {
           questionType="꼬리질문"
           questionContent={tailQuestionData}
           onFileUpload={handleFileUpload}
-        >
-        </QuestionUpload>
+        />
       )}
     </div>
   );
